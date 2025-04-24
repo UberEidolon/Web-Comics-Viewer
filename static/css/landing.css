@@ -1,0 +1,158 @@
+/* Основные стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Шапка */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
+
+.nav ul {
+    display: flex;
+    gap: 20px;
+}
+
+.nav a {
+    color: white;
+    font-weight: bold;
+}
+
+/* Hero-секция */
+.hero {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+}
+
+/* О нас */
+.about {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Манга */
+.comics {
+    padding: 40px 20px;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.comics-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.comic-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+
+.comic-card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.comic-card h3 {
+    margin-top: 10px;
+}
+
+.comic-card p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Контакты */
+.contact {
+    padding: 40px 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+.contact a {
+    color: #ff6600;
+}
+
+/* Подвал */
+.footer {
+    padding: 20px;
+    background-color: #222;
+    color: white;
+    text-align: center;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .comics-list {
+        flex-direction: column;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .comics-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .comic-card {
+        width: 100%;
+        max-width: 350px;
+    }
+}

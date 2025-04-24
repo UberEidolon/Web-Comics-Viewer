@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ manga.title }} - Page {{ page.order }}</title>
+    <link rel="stylesheet" href="{% static 'viewer/css/manga_viewer.css' %}">
+</head>
+<body>
+
+    <h1>{{ manga.title }}</h1>
+    <p>{{ manga.description }}</p>
+
+    <div class="manga-page-container">
+        <img class="manga-page" src="{{ page.image.url }}" alt="Page {{ page.order }}">
+    </div>
+
+    <!-- Навигация по страницам -->
+    <div class="navigation">
+        {% if page.order > 1 %}
+            <a href="/manga/{{ manga.id }}/page-{{ page.order|add:'-1' }}/" class="prev-button">Previous</a>
+        {% endif %}
+        <a href="/manga/{{ manga.id }}/page-{{ page.order|add:'1' }}/" class="next-button">Next</a>
+    </div>
+
+</body>
+</html>

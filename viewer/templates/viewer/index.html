@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Манга Онлайн</title>
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1>Манга Онлайн</h1>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#comics">Манга</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Добро пожаловать на лучший сайт для чтения манги!</h2>
+            <p>Читай свои любимые манги онлайн бесплатно!</p>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <h2>О нас</h2>
+        <p>Мы предоставляем огромный выбор манги для чтения в удобном формате. Бесплатно, без ограничений!</p>
+    </section>
+
+    <section class="comics" id="comics">
+        <h2>Популярные манги</h2>
+        <div class="comics-list">
+            {% for manga in mangas %}
+            <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                {% for manga in mangas %}
+                  <a href="{% url 'manga_detail' manga.id %}" style="text-decoration: none; color: inherit;">
+                    <div style="width: 200px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">
+                      <img src="{{ manga.cover.url }}" alt="{{ manga.title }}" style="width: 100%;">
+                      <div style="padding: 10px;">
+                        <h3>{{ manga.title }}</h3>
+                        <p>{{ manga.description|truncatechars:80 }}</p>
+                      </div>
+                    </div>
+                  </a>
+                {% endfor %}
+              </div>
+            {% empty %}
+            <p>Пока нет доступных манг :(</p>
+            {% endfor %}
+        </div>
+        
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>Контакты</h2>
+        <p>Свяжитесь с нами через email: <a href="mailto:info@manga.com">info@manga.com</a></p>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Манга Онлайн</p>
+    </footer>
+</body>
+</html>

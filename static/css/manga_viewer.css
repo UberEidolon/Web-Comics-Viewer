@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1, p {
+    text-align: center;
+}
+
+.manga-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.manga-page {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.navigation {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.prev-button, .next-button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.prev-button:hover, .next-button:hover {
+    background-color: #555;
+}
