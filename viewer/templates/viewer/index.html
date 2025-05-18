@@ -1,70 +1,161 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Манга Онлайн</title>
-    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
-</head>
-<body>
-    <header class="header">
-        <div class="logo">
-            <h1>Манга Онлайн</h1>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Manga Library</title>
+        <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="site-header">
+            <div class="container">
+                <div class="logo">Логотип</div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Читать</a></li>
+                    <li><a href="#">О нас</a></li>
+                </ul>
+            </nav>
+            <!-- <div class="header-controls">
+                <input type="search" placeholder="Buscar">
+                <button>Iniciar sesión</button>
+            </div> -->
         </div>
-        <nav class="nav">
-            <ul>
-                <li><a href="#home">Главная</a></li>
-                <li><a href="#about">О нас</a></li>
-                <li><a href="#comics">Манга</a></li>
-                <li><a href="#contact">Контакты</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h2>Добро пожаловать на лучший сайт для чтения манги!</h2>
-            <p>Читай свои любимые манги онлайн бесплатно!</p>
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="container hero-container">
+          <img src="{% static 'img/lain.jpg' %}" alt="Hero Image" class="hero-image">
+          <div class="overlay"></div>
+          <div class="hero-text">
+            <span class="tag">Название комикса</span>
+            <h1>Описание комикса</h1>
+            <p>Что-то про сам комикс...</p>
+            <div class="hero-buttons">
+              <button>Читать онлайн</button>
+            </div>
+          </div>
         </div>
-    </section>
-
-    <section class="about" id="about">
-        <h2>О нас</h2>
-        <p>Мы предоставляем огромный выбор манги для чтения в удобном формате. Бесплатно, без ограничений!</p>
-    </section>
-
-    <section class="comics" id="comics">
-        <h2>Популярные манги</h2>
-        <div class="comics-list">
-            {% for manga in mangas %}
-            <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-                {% for manga in mangas %}
-                  <a href="{% url 'manga_detail' manga.id %}" style="text-decoration: none; color: inherit;">
-                    <div style="width: 200px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">
-                      <img src="{{ manga.cover.url }}" alt="{{ manga.title }}" style="width: 100%;">
-                      <div style="padding: 10px;">
+      </section>
+    
+      <section class="chapter-slider">
+        <div class="container">
+          <h2>Главы</h2>
+          <div class="slider-track">
+            <div class="chapter-card">
+              <img src="{% static 'img/ch1.jpg' %}" alt="Chapter 1">
+              <div class="overlay"></div>
+              <div class="chapter-title">Глава 1: Первая глава</div>
+            </div>
+            <div class="chapter-card">
+              <img src="{% static 'img/ch2.jpg' %}" alt="Chapter 2">
+              <div class="overlay"></div>
+              <div class="chapter-title">Глава 2: Другая глава</div>
+            </div>
+            <div class="chapter-card">
+              <img src="{% static 'img/ch3.jpg' %}" alt="Chapter 3">
+              <div class="overlay"></div>
+              <div class="chapter-title">Глава 3: Ещё одна</div>
+            </div>
+            <div class="chapter-card">
+              <img src="{% static 'img/lain.jpg' %}" alt="Chapter 4">
+              <div class="overlay"></div>
+              <div class="chapter-title">Глава 4: Глава в стадии написания</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      
+      
+    <!-- Trending Section -->
+    <!-- <section class="trending"> 
+        <div class="container">
+            <h2>Tendencias</h2>
+            <div class="trending-tabs">
+                <button class="active">Hoy</button>
+                <button>Semanal</button>
+                <button>Mensual</button>
+            </div>
+            <div class="trending-grid">
+                {% for manga in trending_manga %}
+                <div class="manga-card">
+                    <img src="{{ manga.cover.url }}" alt="{{ manga.title }}">
+                    <div class="manga-meta">
+                        <span class="tag">{{ manga.category }}</span>
                         <h3>{{ manga.title }}</h3>
-                        <p>{{ manga.description|truncatechars:80 }}</p>
-                      </div>
                     </div>
-                  </a>
+                </div>
                 {% endfor %}
-              </div>
-            {% empty %}
-            <p>Пока нет доступных манг :(</p>
-            {% endfor %}
+            </div>
         </div>
-        
+    </section> -->
+    
+    <!-- Latest Popular Section -->
+    <!-- <section class="latest-popular">
+        <div class="container">
+            <h2>Últimos añadidos populares</h2>
+            <div class="manga-list">
+                {% for manga in popular_manga %}
+                <div class="manga-item">
+                    <img src="{{ manga.cover.url }}" alt="{{ manga.title }}">
+                    <h4>{{ manga.title }}</h4>
+                    <p>{{ manga.chapters.count }} capítulos</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </section>
-
-    <section class="contact" id="contact">
-        <h2>Контакты</h2>
-        <p>Свяжитесь с нами через email: <a href="mailto:info@manga.com">info@manga.com</a></p>
-    </section>
-
-    <footer class="footer">
-        <p>&copy; 2025 Манга Онлайн</p>
+     -->
+    <!-- New Chapters -->
+    <!-- <section class="new-chapters">
+        <div class="container">
+            <h2>Nuevos capítulos</h2>
+            <div class="chapter-list">
+                {% for chapter in new_chapters %}
+                <div class="chapter-item">
+                    <img src="{{ chapter.manga.cover.url }}" alt="{{ chapter.manga.title }}">
+                    <div>
+                        <h5>{{ chapter.manga.title }}</h5>
+                        <p>Capítulo {{ chapter.number }}</p>
+                        <small>{{ chapter.created_at|timesince }} atrás</small>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section> -->
+    
+    <!-- Blog Section -->
+    <!-- <section class="blog">
+        <div class="container">
+            <h2>Blog</h2>
+            <div class="blog-posts">
+                {% for post in blog_posts %}
+                <article class="blog-card">
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                    <h4>{{ post.title }}</h4>
+                    <p>{{ post.excerpt }}</p>
+                    <a href="#">Leer artículo</a>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section> -->
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-logo">Логотип</div>
+            <div class="footer-links">
+                <a href="#">Какая-нибудь ссылка</a>
+                <a href="#">Другая ссылка</a>
+                <a href="#"></a>
+            </div>
+        </div>
     </footer>
 </body>
 </html>

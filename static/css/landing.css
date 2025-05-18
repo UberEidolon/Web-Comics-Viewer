@@ -1,158 +1,377 @@
-/* Основные стили */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
+/* Основные переменные */
+:root {
+    --primary-color: #ff4b5c;
+    --background-color: #1c1c1c;
+    --text-color: #ffffff;
+    --secondary-color: #1a1a1a;
+    --accent-color: #fff;
+    --border-radius: 10px;
+    --transition-speed: 0.3s;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1, h2, h3 {
-    color: #333;
+/* Сброс и базовая стилизация */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    border-radius: var(--border-radius);
 }
 
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-speed);
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
-/* Шапка */
-.header {
+/* Header */
+.site-header {
+    background: var(--secondary-color);
+    padding: 1rem 0;
+}
+
+.site-header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
 }
 
-.nav ul {
-    display: flex;
-    gap: 20px;
-}
-
-.nav a {
-    color: white;
+.logo {
+    font-size: 1.8rem;
     font-weight: bold;
+    color: var(--accent-color);
 }
 
-/* Hero-секция */
-.hero {
-    background-color: #1a1a1a;
+.main-nav ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.header-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.header-controls input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    outline: none;
+}
+
+.header-controls button {
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
     color: white;
-    padding: 100px 20px;
-    text-align: center;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
 }
 
-.hero-content h2 {
-    font-size: 3rem;
-    margin-bottom: 20px;
+/* Hero */
+.hero-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    height: 400px; /* или нужная высота, чтобы задать блок */
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .hero-text {
+    position: absolute;
+    top: 50%;
+    left: 5%; /* отступ слева */
+    transform: translateY(-50%);
+    color: white;
+    z-index: 2;
+    max-width: 40%; /* ограничение ширины для удобочитаемости */
+    text-align: left;
+  }
+  .hero-container {
+    position: relative;
+    width: 100%;
+    height: 500px; /* или auto, если хочешь адаптив */
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 20px; /* закруглённые углы */
+  }
+  
+  .hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* растягивает без искажений */
+    z-index: 0;
+  }
+
+  .hero-banner {
+    margin: 2rem 0; /* отступ сверху и снизу */
+  }
+  
+/* Trending Section */
+.trending {
+    padding: 2rem 0;
 }
 
-.hero-content p {
-    font-size: 1.5rem;
+.trending-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
-/* О нас */
-.about {
-    padding: 40px 20px;
-    text-align: center;
+.trending-tabs button {
+    padding: 0.5rem 1rem;
+    background: var(--secondary-color);
+    border: none;
+    border-radius: var(--border-radius);
+    color: white;
+    cursor: pointer;
 }
 
-/* Манга */
-.comics {
-    padding: 40px 20px;
-    background-color: #f0f0f0;
-    text-align: center;
+.trending-tabs button.active {
+    background: var(--primary-color);
 }
 
-.comics-list {
+.trending-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+}
+
+.manga-card {
+    background: var(--secondary-color);
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    transition: transform var(--transition-speed);
+}
+
+.manga-card:hover {
+    transform: scale(1.03);
+}
+
+.manga-meta {
+    padding-top: 0.5rem;
+}
+
+.manga-meta h3 {
+    font-size: 1rem;
+    margin: 0.3rem 0;
+}
+
+/* Latest Popular */
+.latest-popular {
+    padding: 2rem 0;
+}
+
+.manga-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.manga-item h4 {
+    font-size: 1rem;
+    margin-top: 0.3rem;
+}
+
+.chapter-slider {
+    padding: 3rem 0;
+    background-color: #1c1c1c;
+  }
+  
+  .chapter-slider h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+  
+  .slider-track {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+  }
+  
+  .chapter-card {
+    position: relative;
+    flex: 0 0 calc(33.333% - 1rem);
+    height: 250px;
+    border-radius: 16px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    cursor: pointer;
+    min-width: 250px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .chapter-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .chapter-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
+  }
+  
+  .chapter-card .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
+    z-index: 1;
+  }
+  
+  .chapter-title {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 2;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  
+
+/* Footer */
+.site-footer {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 2rem 0;
+    font-size: 0.95rem;
+  }
+  
+  .site-footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.comic-card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 250px;
-    text-align: center;
-}
-
-.comic-card img {
-    width: 100%;
-    border-radius: 8px;
-}
-
-.comic-card h3 {
-    margin-top: 10px;
-}
-
-.comic-card p {
-    font-size: 1rem;
-    color: #555;
-}
-
-/* Контакты */
-.contact {
-    padding: 40px 20px;
-    background-color: #333;
-    color: white;
-    text-align: center;
-}
-
-.contact a {
-    color: #ff6600;
-}
-
-/* Подвал */
-.footer {
-    padding: 20px;
-    background-color: #222;
-    color: white;
-    text-align: center;
-}
-
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .footer-links a:hover {
+    color: #fff;
+  }
+    
 /* Адаптивность */
 @media (max-width: 768px) {
-    .nav ul {
+    .site-header .container,
+    .hero-banner,
+    .header-controls {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
     }
 
-    .comics-list {
+    .main-nav ul {
         flex-direction: column;
+        gap: 0.5rem;
     }
 
-    .hero-content h2 {
+    .hero-text h1 {
         font-size: 2rem;
     }
 }
 
-@media (max-width: 480px) {
-    .hero-content h2 {
-        font-size: 1.5rem;
+.hero-buttons button {
+    background: linear-gradient(145deg, #4e4e4e, #2b2b2b);
+    color: #fff;
+    border: none;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+    animation: glowPulse 2s infinite ease-in-out;
+  }
+  
+  .hero-buttons button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 18px 6px rgba(255, 255, 255, 0.4);
+  }
+  
+  /* Анимация постоянного пульса */
+  @keyframes glowPulse {
+    0% {
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
     }
-
-    .hero-content p {
-        font-size: 1.2rem;
+    50% {
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
     }
-
-    .comics-list {
-        flex-direction: column;
-        align-items: center;
+    100% {
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
     }
-
-    .comic-card {
-        width: 100%;
-        max-width: 350px;
-    }
-}
+  }
+    
